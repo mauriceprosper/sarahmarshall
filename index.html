@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Marshall - Premium Beauty & Lifestyle Content</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sarah Marshall</h1>
+        <p class="subtitle">Premium Beauty & Lifestyle Content</p>
+    </header>
+
+    <div class="container">
+        <div class="video-grid" id="videoGrid"></div>
+        
+        <div class="load-more-container">
+            <button class="load-more-btn" id="loadMoreBtn">Load More Videos</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Sarah Marshall. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Video data configuration
+        const videos = [
+            { id: 1, title: 'Content #1', file: 'videos/5e558fe5-77dd-47e8-ba84-6548adfe56db.mp4', duration: '12 min' },
+            { id: 2, title: 'Content #2', file: 'videos/89bc4ca1-5515-4191-bc7d-f78510355afb.mp4', duration: '15 min' },
+            { id: 3, title: 'Content #3', file: 'videos/622f006d-9a02-45a3-9cb6-10f138baf21b.mp4', duration: '18 min' },
+            { id: 4, title: 'Content #4', file: 'videos/552747eb-26b8-4bb2-b9d7-0e8f77e80551.mp4', duration: '14 min' },
+            { id: 5, title: 'Content #5', file: 'videos/20210112_115053.mp4', duration: '10 min' },
+            { id: 6, title: 'Content #6', file: 'videos/20210115_232617.mp4', duration: '13 min' },
+            { id: 7, title: 'Content #7', file: 'videos/20210115_232847.mp4', duration: '16 min' },
+            { id: 8, title: 'Content #8', file: 'videos/20210409_201827.mp4', duration: '9 min' },
+            { id: 9, title: 'Content #9', file: 'videos/20210426_220852.mp4', duration: '17 min' },
+            { id: 10, title: 'Content #10', file: 'videos/20210518_203008.mp4', duration: '11 min' },
+            { id: 11, title: 'Content #11', file: 'videos/20210607_092120_001.mp4', duration: '20 min' },
+            { id: 12, title: 'Content #12', file: 'videos/20210609_015818.mp4', duration: '8 min' },
+            { id: 13, title: 'Content #13', file: 'videos/20210706_130104.mp4', duration: '19 min' },
+            { id: 14, title: 'Content #14', file: 'videos/20200306_225844.mp4', duration: '14 min' },
+            { id: 15, title: 'Content #15', file: 'videos/20200926_213346.mp4', duration: '16 min' },
+            { id: 16, title: 'Content #16', file: 'videos/20201109_203927.mp4', duration: '13 min' },
+            { id: 17, title: 'Content #17', file: 'videos/20201207_185819.mp4', duration: '15 min' },
+            { id: 18, title: 'Content #18', file: 'videos/20210109_153951.mp4', duration: '12 min' },
+            { id: 19, title: 'Content #19', file: 'videos/20190507_222438.mp4', duration: '18 min' },
+            { id: 20, title: 'Content #20', file: 'videos/51a1d548-e119-4e93-a604-007f74571637.MP4', duration: '11 min' },
+            { id: 21, title: 'Content #21', file: 'videos/5e558fe5-77dd-47e8-ba84-6548adfe56db.mp4', duration: '14 min' },
+            { id: 22, title: 'Content #22', file: 'videos/89bc4ca1-5515-4191-bc7d-f78510355afb.mp4', duration: '16 min' },
+            { id: 23, title: 'Content #23', file: 'videos/622f006d-9a02-45a3-9cb6-10f138baf21b.mp4', duration: '10 min' },
+            { id: 24, title: 'Content #24', file: 'videos/552747eb-26b8-4bb2-b9d7-0e8f77e80551.mp4', duration: '13 min' },
+            { id: 25, title: 'Content #25', file: 'videos/20210112_115053.mp4', duration: '15 min' },
+            { id: 26, title: 'Content #26', file: 'videos/20210115_232617.mp4', duration: '12 min' },
+            { id: 27, title: 'Content #27', file: 'videos/20210115_232847.mp4', duration: '18 min' },
+            { id: 28, title: 'Content #28', file: 'videos/20210409_201827.mp4', duration: '11 min' },
+            { id: 29, title: 'Content #29', file: 'videos/20210426_220852.mp4', duration: '14 min' },
+            { id: 30, title: 'Content #30', file: 'videos/20210518_203008.mp4', duration: '16 min' },
+            { id: 31, title: 'Content #31', file: 'videos/20210607_092120_001.mp4', duration: '13 min' },
+            { id: 32, title: 'Content #32', file: 'videos/20210609_015818.mp4', duration: '17 min' },
+            { id: 33, title: 'Content #33', file: 'videos/20210706_130104.mp4', duration: '12 min' },
+            { id: 34, title: 'Content #34', file: 'videos/20200306_225844.mp4', duration: '15 min' },
+            { id: 35, title: 'Content #35', file: 'videos/20200926_213346.mp4', duration: '11 min' },
+            { id: 36, title: 'Content #36', file: 'videos/20201109_203927.mp4', duration: '14 min' },
+            { id: 37, title: 'Content #37', file: 'videos/20201207_185819.mp4', duration: '16 min' },
+            { id: 38, title: 'Content #38', file: 'videos/20210109_153951.mp4', duration: '13 min' },
+            { id: 39, title: 'Content #39', file: 'videos/20190507_222438.mp4', duration: '18 min' },
+            { id: 40, title: 'Content #40', file: 'videos/51a1d548-e119-4e93-a604-007f74571637.MP4', duration: '12 min' },
+        ];
+
+        const videosPerLoad = 20;
+        let currentIndex = 0;
+
+        // Render videos
+        function renderVideos(startIndex, endIndex) {
+            const grid = document.getElementById('videoGrid');
+            const videoSlice = videos.slice(startIndex, endIndex);
+
+            videoSlice.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.innerHTML = `
+                    <div class="video-thumbnail">
+                        <video width="100%" height="100%" style="object-fit: cover;">
+                            <source src="${video.file}" type="video/mp4">
+                        </video>
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-meta">
+                            <span>${video.duration}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click to play functionality
+                card.addEventListener('click', function() {
+                    playVideo(video.file, video.title);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Play video in modal
+        function playVideo(videoFile, videoTitle) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>${videoTitle}</h2>
+                    <video width="100%" height="auto" controls autoplay>
+                        <source src="${videoFile}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target.classList.contains('close-btn')) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Load more functionality
+        function loadMore() {
+            const startIndex = currentIndex;
+            const endIndex = currentIndex + videosPerLoad;
+            renderVideos(startIndex, Math.min(endIndex, videos.length));
+            currentIndex = endIndex;
+
+            // Hide load more button if all videos are loaded
+            if (currentIndex >= videos.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            }
+        }
+
+        // Initialize
+        function init() {
+            loadMore();
+            document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
+        }
+
+        // Run on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
